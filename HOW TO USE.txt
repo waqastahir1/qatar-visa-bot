@@ -1,0 +1,185 @@
+============================================================
+  QATAR VISA BOT — HOW TO USE
+============================================================
+
+WHAT THIS APP DOES
+------------------
+This app monitors the Qatar Visa Center website (qatarvisacenter.com)
+and automatically books an appointment slot the moment one becomes
+available. You control everything from a dashboard in your browser.
+
+
+------------------------------------------------------------
+STEP 1 — START THE APP
+------------------------------------------------------------
+Double-click:  start.bat
+
+This opens two terminal windows (backend + frontend) and automatically
+launches the dashboard in your browser at:
+
+  http://localhost:3000
+
+Keep both terminal windows open while using the app.
+Closing them will shut down the app.
+
+
+------------------------------------------------------------
+STEP 2 — OPEN SETTINGS
+------------------------------------------------------------
+Click the Settings icon (top-right of the dashboard).
+
+Fill in the following:
+
+  Qatar Visa Center Login
+  -----------------------
+  - Email Address   : The email you use to log in to qatarvisacenter.com
+  - Password        : Your QVC account password
+
+  Monitoring Date Range
+  ---------------------
+  - Start Date : The earliest date you want to book (e.g. 2025-11-01)
+  - End Date   : The latest date you want to book   (e.g. 2025-12-31)
+
+  Bot Behavior
+  ------------
+  - Check Interval (seconds)  : How often the bot checks for slots (default: 60)
+  - Months to Monitor         : How many months ahead to scan (default: 2)
+  - CAPTCHA Wait Time (sec)   : How long the bot pauses for you to solve
+                                a CAPTCHA manually (default: 60)
+  - Stealth Mode              : ON = human-like random delays (recommended)
+  - Auto Book                 : ON = bot books the slot automatically when found
+  - Auto Click Next           : ON = bot clicks the Next button automatically
+  - Auto Click Confirm        : ON = bot clicks the Confirm button automatically
+
+  Gmail Email Notifications (Optional)
+  -------------------------------------
+  If you want to receive email alerts when a slot is found, booked,
+  or when a CAPTCHA appears:
+
+  1. Enable Email Alerts       : Turn this ON
+  2. Your Gmail Address        : The Gmail account that will SEND the alerts
+                                 (e.g. yourname@gmail.com)
+  3. Gmail App Password        : A special password for this app (NOT your
+                                 normal Gmail password). To get one:
+                                   a. Go to myaccount.google.com
+                                   b. Security → Enable 2-Step Verification
+                                   c. Security → App Passwords
+                                   d. Create one for "Mail"
+                                   e. Copy the 16-character code here
+  4. Recipient Email           : The email address that will RECEIVE the alerts
+                                 (can be the same as your Gmail address)
+
+Click SAVE SETTINGS when done.
+
+
+------------------------------------------------------------
+STEP 3 — ADD YOUR CLIENTS
+------------------------------------------------------------
+Clients are the people whose appointments you want to book.
+If you are booking only for yourself, add yourself as one client.
+
+Click "Add Client" and fill in:
+  - Full Name      : Applicant's full name
+  - Passport No.   : Passport number (used to fill the booking form)
+  - Visa Type      : Type of visa being applied for
+  - Mobile         : Contact phone number
+  - Email          : Contact email
+  - Priority       : Urgent = booked first, Normal = booked after urgent ones
+
+Click Save. You can add multiple clients.
+The bot will book them in order of priority (Urgent first).
+
+
+------------------------------------------------------------
+STEP 4 — START THE BOT
+------------------------------------------------------------
+Click the START BOT button on the dashboard.
+
+A Chromium browser window will open — this is normal.
+The bot uses this visible browser to navigate the QVC website.
+Do NOT close this browser window while the bot is running.
+
+The bot will:
+  1. Log in to your QVC account
+  2. Navigate to the appointment booking page
+  3. Check available slots within your date range
+  4. If a slot is found → attempt to book it for your top-priority client
+  5. Repeat every X seconds (based on your Check Interval setting)
+
+You can watch live logs at the bottom of the dashboard.
+
+
+------------------------------------------------------------
+STEP 5 — HANDLING CAPTCHA
+------------------------------------------------------------
+Sometimes the QVC website shows a CAPTCHA (image puzzle).
+The bot cannot solve this automatically — you must do it manually.
+
+When a CAPTCHA appears:
+  1. You will receive an email alert (if Gmail is configured)
+  2. The log will show "CAPTCHA detected — please solve manually"
+  3. Switch to the Chromium browser window
+  4. Solve the CAPTCHA yourself
+  5. The bot will wait (based on your CAPTCHA Wait Time setting)
+     and then continue automatically
+
+
+------------------------------------------------------------
+STEP 6 — STOP THE BOT
+------------------------------------------------------------
+Click the STOP BOT button on the dashboard at any time.
+The Chromium browser will close and monitoring will stop.
+
+
+------------------------------------------------------------
+EMAIL ALERTS YOU WILL RECEIVE
+------------------------------------------------------------
+If Gmail notifications are enabled, you will get emails for:
+
+  - Bot Started         : Bot has begun monitoring
+  - Bot Stopped         : Bot has been stopped
+  - Slot Found          : An available slot was detected
+  - Appointment Booked  : A slot was successfully booked (includes details)
+  - Booking Failed      : A booking attempt failed (bot will keep trying)
+  - CAPTCHA Detected    : Manual action required from you
+
+
+------------------------------------------------------------
+TIPS
+------------------------------------------------------------
+  - Set a shorter Check Interval (e.g. 30 seconds) if slots fill up fast
+  - Keep the app running overnight — slots often appear at odd hours
+  - Make sure your QVC account is valid and not locked before starting
+  - The bot opens a real browser — your screen may show it in the taskbar
+  - If the bot crashes, check the terminal window for error messages
+    and report them for support
+
+
+------------------------------------------------------------
+TROUBLESHOOTING
+------------------------------------------------------------
+  App does not open at http://localhost:3000
+    → Make sure both terminal windows from start.bat are still open
+    → Wait 10 seconds after running start.bat and try again
+
+  Bot fails to log in
+    → Double-check your QVC email and password in Settings
+    → Try logging in manually at qatarvisacenter.com to confirm they work
+
+  No slots found
+    → The website may genuinely have no slots in your date range
+    → Try widening your date range or increasing Months to Monitor
+
+  CAPTCHA keeps appearing
+    → Enable Stealth Mode in Settings to reduce CAPTCHA frequency
+    → Increase the Check Interval so the bot checks less often
+
+  Email alerts not arriving
+    → Confirm your Gmail App Password is correct (not your regular password)
+    → Check your spam/junk folder
+    → Make sure 2-Step Verification is enabled on your Google account
+
+
+============================================================
+  Qatar Visa Bot  |  Dashboard: http://localhost:3000
+============================================================

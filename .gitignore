@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Build output / bundled runtimes (regenerate with build-desktop.bat / prepare-bundle.bat)
+frontend/.next/
+frontend/out/
+frontend/dist/
+frontend/python-bundle/
+frontend/playwright-browsers/
+
+# Secrets & local config
+.env
+.env.*
+!.env.example
+.claude/settings.local.json
+
+# Client data (passports, visas, contacts) — never commit
+*.db
+*.sqlite
+*.sqlite3
+*.storage.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+
+# Local copies with real credentials
+*.local.user.js

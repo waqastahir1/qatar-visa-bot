@@ -1,0 +1,80 @@
+{
+  "name": "qatar-visa-bot-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "desktop": "electron .",
+    "build:standalone": "cross-env BUILD_STANDALONE=true next build",
+    "dist": "npm run build:standalone && electron-builder --win --x64"
+  },
+  "build": {
+    "appId": "com.qatar.visabot",
+    "productName": "Qatar Visa Bot",
+    "files": [
+      "electron/**/*",
+      "out/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "../backend",
+        "to": "backend",
+        "filter": [
+          "**/*.py",
+          "requirements.txt",
+          "!__pycache__/**",
+          "!*.pyc",
+          "!qatar_bot.db",
+          "!.env"
+        ]
+      },
+      {
+        "from": "python-bundle",
+        "to": "python-bundle",
+        "filter": ["**/*"]
+      },
+      {
+        "from": "playwright-browsers",
+        "to": "playwright-browsers",
+        "filter": ["**/*"]
+      }
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "deleteAppDataOnUninstall": false,
+      "shortcutName": "Qatar Visa Bot",
+      "include": "build/installer.nsh"
+    }
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "date-fns": "^3.0.6",
+    "lucide-react": "^0.303.0",
+    "next": "^16.1.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "@types/react": "^18.2.46",
+    "@types/react-dom": "^18.2.18",
+    "autoprefixer": "^10.4.16",
+    "cross-env": "^7.0.3",
+    "electron": "^28.3.3",
+    "electron-builder": "^24.13.3",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.3.3"
+  }
+}
